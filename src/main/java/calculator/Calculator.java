@@ -1,12 +1,12 @@
 package calculator;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Calculator {
 
-    public Long add(ArrayList<Long> nums) {
+    public Long add(List<Long> numberList) {
         Long sum = 0L;
-        for (Long num : nums) {
+        for (Long num : numberList) {
             sum += num;
         }
         return sum;
