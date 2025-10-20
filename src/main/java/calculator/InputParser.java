@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class InputParser {
 
     private static final String DEFAULT_DELIMITER = ",:";
-    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("^//(.+)\n(.*)$");
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("^//(.+)\\\\n(.*)$");
 
     private record SeparatedParts(String delimiterPart, String numberPart) {
     }

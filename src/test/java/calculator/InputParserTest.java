@@ -54,10 +54,11 @@ class InputParserTest {
                 .hasMessage(ErrorMessage.NEGATIVE_NUMBER_ERROR);
     }
 
-    static final String INPUT_WITH_DELIMITER1 = "//;\n1;2;3;4";
-    static final String INPUT_WITH_DELIMITER2 = "//;\n1;2,3:4";
-    static final String INPUT_WITH_DELIMITER3 = "//;^\n1;2^3:4";
-    static final String INPUT_WITH_DELIMITER4 = "//;^\n1;2^3,4";
+    static final String INPUT_WITH_DELIMITER1 = "//;\\n1;2;3;4";
+    static final String INPUT_WITH_DELIMITER2 = "//;\\n1;2,3:4";
+    static final String INPUT_WITH_DELIMITER3 = "//;^\\n1;2^3:4";
+    static final String INPUT_WITH_DELIMITER4 = "//;^\\n1;2^3,4";
+    static final String INPUT_WITH_DELIMITER5 = "//;\\n1";
 
     @Test
     void 커스텀_구분자_입력() {
@@ -67,19 +68,21 @@ class InputParserTest {
         List<Long> numberList2 = inputParser.parse(INPUT_WITH_DELIMITER2);
         List<Long> numberList3 = inputParser.parse(INPUT_WITH_DELIMITER3);
         List<Long> numberList4 = inputParser.parse(INPUT_WITH_DELIMITER4);
+        List<Long> numberList5 = inputParser.parse(INPUT_WITH_DELIMITER5);
 
         //then
         Assertions.assertThat(numberList1).isEqualTo(Arrays.asList(1L, 2L, 3L, 4L));
         Assertions.assertThat(numberList2).isEqualTo(Arrays.asList(1L, 2L, 3L, 4L));
         Assertions.assertThat(numberList3).isEqualTo(Arrays.asList(1L, 2L, 3L, 4L));
         Assertions.assertThat(numberList4).isEqualTo(Arrays.asList(1L, 2L, 3L, 4L));
+        Assertions.assertThat(numberList5).isEqualTo(Arrays.asList(1L));
 
     }
 
-    static final String WRONG_INPUT_WITH_DELIMITER1 = "//;\n1^2^3^4";
-    static final String WRONG_INPUT_WITH_DELIMITER2 = "//;\n1;2&3^4";
-    static final String WRONG_INPUT_WITH_DELIMITER3 = "//;^\na;2;3;4";
-    static final String WRONG_INPUT_WITH_DELIMITER4 = "//;^\n-1;2;3;4";
+    static final String WRONG_INPUT_WITH_DELIMITER1 = "//;\\n1^2^3^4";
+    static final String WRONG_INPUT_WITH_DELIMITER2 = "//;\\n1;2&3^4";
+    static final String WRONG_INPUT_WITH_DELIMITER3 = "//;^\\na;2;3;4";
+    static final String WRONG_INPUT_WITH_DELIMITER4 = "//;^\\n-1;2;3;4";
 
     @Test
     void 커스텀_구분자_입력_예외() {
